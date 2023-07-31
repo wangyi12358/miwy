@@ -4,21 +4,13 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import React from 'react'
 
-import image5 from '~/assets/highlights/highlight-cali.jpeg'
-import image1 from '~/assets/highlights/highlight-cat.jpeg'
-import image3 from '~/assets/highlights/highlight-controller.jpg'
-import image6 from '~/assets/highlights/highlight-push.png'
-import image2 from '~/assets/highlights/highlight-workshop.jpg'
-import image4 from '~/assets/highlights/highlight-zolplay.jpg'
+type Item = {
+  src: string
+  alt: string
+}
 
-const images = [image1, image2, image3, image4, image5, image6]
-const alts = [
-  '我的猫躺在我的工作台桌子上的键盘旁边',
-  '我在西雅图城市大学举办的技术演讲',
-  'Xbox 团队给我专属定制的控制器',
-  '佐玩的办公室大厅，背景墙挂着一个黑色的佐玩氛围布',
-  '我举着酒杯看着手机',
-  '我在用 Ableton Push 制作电子乐',
+const items = [
+
 ]
 
 export function Photos() {
@@ -34,7 +26,7 @@ export function Photos() {
         return setWidth(window.innerWidth / 2 - 64)
       }
 
-      setWidth(window.innerWidth / images.length - 4 * images.length)
+      setWidth(window.innerWidth / items.length - 4 * items.length)
     }
 
     window.addEventListener('resize', handleResize)
@@ -56,10 +48,10 @@ export function Photos() {
       }}
     >
       <div className="-my-4 flex w-full snap-x snap-proximity scroll-pl-4 justify-start gap-4 overflow-x-auto px-4 py-4 sm:gap-6 md:justify-center md:overflow-x-hidden md:px-0">
-        {images.map((image, idx) => (
+        {items.map((image, idx) => (
           <motion.div
             key={image.src}
-            className="relative h-40 flex-none shrink-0 snap-start overflow-hidden rounded-xl bg-zinc-100 ring-2 ring-lime-800/20 dark:bg-zinc-800 dark:ring-lime-300/10 md:h-72 md:rounded-3xl"
+            className="relative h-40 flex-none shrink-0 snap-start overflow-hidden rounded-xl bg-zinc-100 ring-2 ring-primary-800/20 dark:bg-zinc-800 dark:ring-primary-300/10 md:h-72 md:rounded-3xl"
             animate={{
               width,
               opacity: isCompact ? 1 : 0.85,

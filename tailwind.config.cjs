@@ -1,5 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const colors = require('tailwindcss/colors')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { fontFamily } = require('tailwindcss/defaultTheme')
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -304,10 +307,8 @@ module.exports = {
     }),
     extend: {
       colors: {
-        primary: {
-          900: '#000212',
-        },
         // light mode
+        primary: colors.sky,
         tremor: {
           brand: {
             faint: '#eff6ff', // blue-50

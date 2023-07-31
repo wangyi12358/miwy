@@ -37,7 +37,7 @@ function Message({
       <div className="relative flex items-start space-x-3">
         <Image
           src={
-            message.userInfo.imageUrl ?? `/avatars/avatar_${(idx % 8) + 1}.png`
+            message.userInfo.imageUrl ?? 'https://joeschmoe.crstauf.workers.dev/api/v1/random'
           }
           alt=""
           width={40}

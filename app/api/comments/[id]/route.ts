@@ -131,13 +131,7 @@ export async function POST(req: NextRequest, { params }: Params) {
         .from(comments)
         .where(eq(comments.id, parentId as number))
       if (parentUserFromDb && parentUserFromDb.userId !== user.id) {
-        const {
-          primaryEmailAddressId,
-          emailAddresses,
-          imageUrl,
-          firstName,
-          lastName,
-        } = await clerkClient.users.getUser(parentUserFromDb.userId)
+        const { primaryEmailAddressId, emailAddresses } = await clerkClient.users.getUser(parentUserFromDb.userId)
         const primaryEmailAddress = emailAddresses.find(
           (emailAddress) => emailAddress.id === primaryEmailAddressId
         )

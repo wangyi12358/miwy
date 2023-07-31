@@ -17,7 +17,7 @@ import {
 import { Tooltip } from '~/components/ui/Tooltip'
 
 type IconType = (props: IconProps) => JSX.Element
-type Platform =
+export type Platform =
   | 'github'
   | 'twitter'
   | 'youtube'
@@ -56,34 +56,14 @@ const iconMapper: { [key: string]: PlatformInfo } = {
   '(?:feed.xml)': { icon: AtomIcon, platform: 'rss', label: 'RSS 订阅' },
 }
 
-function getIconForUrl(url: string): PlatformInfo | undefined {
-  for (const regexStr in iconMapper) {
-    const regex = new RegExp(
-      `^(?:https?:\/\/)?(?:[^@/\\n]+@)?(?:www.)?` + regexStr
-    )
-    if (regex.test(url)) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return iconMapper[regexStr]!
-    }
-  }
+const iconList = Object.values(iconMapper)
 
-  return undefined
+function getIconForUrl(url: string): PlatformInfo | void {
+  return iconList.find((icon) => new RegExp(icon.platform).test(url))
 }
 
-function getIconForPlatform(
-  platform: Platform | undefined
-): PlatformInfo | undefined {
-  if (!platform) {
-    return undefined
-  }
-
-  for (const info of Object.values(iconMapper)) {
-    if (info.platform === platform) {
-      return info
-    }
-  }
-
-  return undefined
+function getIconForPlatform(platform?: Platform): PlatformInfo | void {
+  return iconList.find((icon) => icon.platform === platform)
 }
 
 export function SocialLink({
